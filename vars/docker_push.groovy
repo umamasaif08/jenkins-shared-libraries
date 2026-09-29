@@ -1,4 +1,4 @@
-def call(String credId, String imageName , String projectName , String dockerHubUser){
+def call(String credId, String imageTag, String projectName , String dockerHubUser){
   withCredentials([usernamePassword(
                     credentialsId:"${credId}",
                     passwordVariable: "dockerHubPass",
@@ -7,5 +7,5 @@ def call(String credId, String imageName , String projectName , String dockerHub
                 
                 bat "docker login -u ${dockerHubUser} -p ${dockerHubPass}"            
                 }  
-                bat "docker push ${dockerHubUser}/${projectName}:${imageName}"
+                bat "docker push ${dockerHubUser}/${projectName}:${imageTag}"
 }
